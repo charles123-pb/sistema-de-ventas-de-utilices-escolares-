@@ -1,0 +1,306 @@
+/* Densidad del panel interno; el catálogo público conserva su presentación. */
+.staff-compact {
+  --sidebar-width: 224px;
+}
+.staff-compact .sidebar {
+  width: var(--sidebar-width);
+  padding: 22px 12px 18px;
+}
+.staff-compact .brand {
+  padding: 0 8px;
+  font-size: 1.35rem;
+  gap: 10px;
+}
+.staff-compact .brand > i {
+  font-size: 1.8rem;
+}
+.staff-compact .sidebar-label {
+  margin: 26px 10px 10px;
+  font-size: 0.58rem;
+}
+.staff-compact .sidebar nav > a,
+.staff-compact .nav-group-toggle {
+  min-height: 42px;
+  padding: 10px;
+  gap: 10px;
+  font-size: 0.82rem;
+  margin: 3px 0;
+  border-radius: 8px;
+}
+.nav-group-toggle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: #c7d7e7;
+}
+.nav-group-toggle span {
+  flex: 1;
+}
+.nav-group-toggle:hover {
+  background: #ffffff10;
+}
+.nav-group-toggle.current {
+  color: #73eee3;
+}
+.staff-compact .nav-chevron {
+  font-size: 0.7rem;
+  transition: transform 0.18s;
+}
+.nav-group-toggle[aria-expanded="true"] .nav-chevron {
+  transform: rotate(180deg);
+}
+.nav-submenu {
+  border-left: 1px solid #537089;
+  margin: 2px 0 9px 18px;
+  padding-left: 8px;
+}
+.staff-compact .nav-submenu a {
+  padding: 8px 10px;
+  min-height: 36px;
+  font-size: 0.78rem;
+  gap: 9px;
+}
+.staff-compact .nav-submenu i {
+  font-size: 0.9rem;
+}
+.staff-compact .sidebar-bottom {
+  padding: 20px 8px 0;
+}
+.staff-compact .user-info {
+  margin: 16px 0;
+  font-size: 0.8rem;
+}
+.staff-compact .user-info > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.staff-compact .sidebar-bottom .btn {
+  font-size: 0.78rem;
+  min-height: 38px;
+}
+.staff-compact .main-content {
+  margin-left: var(--sidebar-width);
+  padding: 24px 28px;
+  min-width: 0;
+}
+.staff-compact .staff-topbar {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+}
+.staff-compact .demo-notice {
+  margin-bottom: 18px;
+  padding: 9px 12px;
+}
+.staff-compact .page-heading {
+  margin-bottom: 20px;
+  gap: 12px;
+}
+.staff-compact .eyebrow {
+  margin-bottom: 5px;
+  font-size: 0.6rem;
+}
+.staff-compact h1 {
+  font-size: clamp(1.45rem, 2.3vw, 1.9rem);
+  margin-bottom: 5px;
+}
+.staff-compact h2 {
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+.staff-compact .page-heading p {
+  font-size: 0.82rem;
+}
+.staff-compact .panel {
+  padding: 18px;
+  border-radius: 12px;
+}
+.staff-compact .btn {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.84rem;
+  min-height: 36px;
+}
+.staff-compact .field {
+  font-size: 0.81rem;
+  margin-bottom: 0.8rem;
+}
+.staff-compact .form-control,
+.staff-compact .form-select {
+  font-size: 0.88rem;
+  padding: 0.5rem 0.7rem;
+  min-height: 38px;
+}
+.staff-compact .field input,
+.staff-compact .field select,
+.staff-compact .field textarea {
+  margin-top: 0.3rem;
+}
+.staff-compact .form-grid {
+  gap: 0 1rem;
+}
+.staff-compact .table {
+  font-size: 0.83rem;
+  margin-bottom: 0;
+}
+.staff-compact .table th {
+  font-size: 0.68rem;
+  padding: 10px;
+}
+.staff-compact .table td {
+  padding: 10px;
+}
+.staff-compact .badge {
+  padding: 6px 9px;
+}
+.staff-compact .metrics {
+  gap: 12px;
+}
+.staff-compact .metric {
+  padding: 16px;
+}
+.staff-compact .metric > i {
+  top: 14px;
+  right: 14px;
+  font-size: 1.1rem;
+  padding: 8px;
+}
+.staff-compact .metric span {
+  font-size: 0.74rem;
+}
+.staff-compact .metric strong {
+  font-size: 1.5rem;
+  margin-top: 14px;
+}
+.staff-compact .workflow-links {
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.staff-compact .workflow-links a {
+  padding: 11px 13px;
+  gap: 10px;
+}
+.staff-compact .chart {
+  height: 190px;
+}
+.staff-compact .attention > i {
+  font-size: 1.4rem;
+}
+.staff-compact .attention h2 {
+  margin-top: 8px;
+}
+.staff-compact .attention p,
+.staff-compact .attention a {
+  font-size: 0.84rem;
+}
+.staff-compact .mb-4 {
+  margin-bottom: 1rem !important;
+}
+.staff-compact .mt-4 {
+  margin-top: 1rem !important;
+}
+.staff-compact .row.g-4 {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+}
+.sidebar-backdrop {
+  display: none;
+}
+.staff-compact :is(a, button):focus-visible {
+  outline: 3px solid #21b4c3;
+  outline-offset: 3px;
+}
+@media (min-width: 768px) and (max-width: 1100px) {
+  .staff-compact {
+    --sidebar-width: 210px;
+  }
+  .staff-compact .main-content {
+    padding: 22px 20px;
+  }
+  .staff-compact .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 767px) {
+  .staff-compact .mobile-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 30;
+    border-radius: 0;
+    min-height: 48px;
+    text-align: left;
+    padding: 10px 16px;
+  }
+  .staff-compact .sidebar {
+    width: min(280px, 85vw);
+    top: 48px;
+  }
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 48px 0 0;
+    z-index: 19;
+    background: #0a233c70;
+    border: 0;
+  }
+  .staff-compact .main-content {
+    margin-left: 0;
+    padding: 18px 14px;
+  }
+  .staff-compact .panel {
+    padding: 15px;
+  }
+  .staff-compact .page-heading {
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+  .staff-compact :is(.btn, .form-control, .form-select, .nav-group-toggle),
+  .staff-compact .sidebar nav a {
+    min-height: 44px;
+  }
+  .staff-compact .workflow-links {
+    gap: 8px;
+  }
+  .staff-compact .workflow-links a span {
+    display: block;
+  }
+  .staff-compact .workflow-links a small {
+    margin-top: 2px;
+  }
+  .staff-compact .metric {
+    padding: 13px;
+  }
+  .staff-compact .metric > i {
+    position: static;
+    align-self: flex-start;
+    margin-bottom: 8px;
+  }
+  .staff-compact .metric span {
+    max-width: 100%;
+  }
+  .staff-compact .metric strong {
+    margin-top: 7px;
+  }
+  .staff-compact .chart {
+    gap: 4px;
+  }
+  .staff-compact .chart-column small {
+    font-size: 0.58rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .staff-compact .nav-chevron {
+    transition: none;
+  }
+}
+@media print {
+  .staff-compact .sidebar-backdrop {
+    display: none;
+  }
+  .staff-compact .main-content {
+    margin: 0;
+    padding: 0;
+  }
+}

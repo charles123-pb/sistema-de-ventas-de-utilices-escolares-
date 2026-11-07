@@ -1,0 +1,26 @@
+.request-workspace { min-width: 0; }
+.request-workspace .school-request { position: static; max-height: none; }
+.school-request .request-intro { color: #58667d; font-size: .77rem; line-height: 1.6; margin: 0 0 14px; }
+.catalog-list-help { padding: 14px 8px; color: #58667d; font-size: .75rem; line-height: 1.7; }
+.catalog-list-help summary { cursor: pointer; color: #3044af; }
+.catalog-list-help p { margin: 10px 0; }
+.quote-inbox-filters { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 18px; }
+.quote-inbox-filters button { padding: 8px 14px; border: 1px solid #e0e6f1; border-radius: 9px; background: white; color: #53627b; font-size: .77rem; font-weight: 600; }
+.quote-inbox-filters button[aria-pressed=true] { background: #293dbe; border-color: #293dbe; color: #fff; }
+.quote-flow { display: flex; list-style: none; padding: 0; margin: 0 0 20px; gap: 8px; }
+.quote-flow li { flex: 1; border-top: 3px solid #dfe4ee; padding-top: 8px; font-size: .75rem; color: #69758a; }
+.quote-flow li.complete { border-color: #6c81c7; color: #43598f; }
+.quote-flow li.current { border-color: #293dbe; color: #293dbe; font-weight: 700; }
+.quote-next { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; background: #eef1fc; border: 1px solid #dfe5f5; border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; color: #36476c; font-size: .85rem; }
+@media(max-width:767px) {
+ .quote-flow { gap: 6px; }
+ .quote-flow li { font-size: .66rem; }
+}
+@media print { .catalog-list-help,.quote-inbox-filters,.quote-flow,.quote-next { display: none; } }
+
+.cart-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.cart-heading h2 { margin: 0; }
+.school-request .clear-all { margin-left: auto; white-space: nowrap; font-size: .65rem; padding: 6px 8px; }
+.direct-partial { display: flex; gap: 9px; align-items: flex-start; font-size: .75rem; color: #344664; margin: 0 0 12px; cursor: pointer; }
+.direct-partial input { margin-top: 3px; flex-shrink: 0; }
+.direct-partial small { display: block; color: #61718a; line-height: 1.5; margin-top: 3px; }

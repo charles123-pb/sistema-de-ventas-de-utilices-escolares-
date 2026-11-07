@@ -1,0 +1,14 @@
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { api } from "../services/api";
+import { Field, Message, useLoad } from "./UI";
+interface Category {id:number;nombre:string;activo:number;}
+export function CategoryManager({onClose,onChanged}:{onClose:()=>void;onChanged:()=>void}){
+ const dialog=useRef<HTMLDialogElement>(null);const trigger=useRef(document.activeElement as HTMLElement|null);
+ const load=useLoad(()=>api<Category[]>("/categorias"),[]);const [edit,setEdit]=useState<Category|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(""),[success,setSuccess]=useState("");
+ useEffect(()=>{dialog.current?.showModal();const previous=trigger.current;return()=>previous?.focus();},[]);
+ async function save(e:FormEvent<HTMLFormElement>){e.preventDefault();setBusy(true);setError("");setSuccess("");const form=e.currentTarget;const f=new FormData(form);try{await api("/categorias",edit?"PUT":"POST",{...(edit?{id:edit.id}:{}),nombre:String(f.get("nombre")||"").trim(),activo:f.get("activo")==="on"});setEdit(null);setSuccess("Categoría guardada.");load.reload();onChanged();form.reset();}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
+ return <dialog ref={dialog} className="category-dialog" aria-labelledby="category-dialog-title" onCancel={e=>{e.preventDefault();if(!busy)onClose();}}><div className="category-dialog-header"><h2 id="category-dialog-title">Categorías</h2><button type="button" className="btn btn-sm btn-outline-secondary" onClick={onClose} disabled={busy} aria-label="Cerrar categorías"><i className="bi bi-x-lg" aria-hidden="true" /></button></div><Message error={error||load.error} success={success} />
+ <form onSubmit={save} key={edit?.id||"new"}><fieldset disabled={busy}><div className="category-form"><Field label="Nombre de categoría"><input name="nombre" className="form-control" required maxLength={100} defaultValue={edit?.nombre||""} /></Field><label className="small d-flex gap-2 align-items-center"><input type="checkbox" name="activo" defaultChecked={edit?!!edit.activo:true} /> Activa</label><button className="btn btn-primary">{busy?"Guardando…":edit?"Guardar categoría":"Crear categoría"}</button>{edit&&<button type="button" className="btn btn-link" onClick={()=>setEdit(null)}>Cancelar edición</button>}</div></fieldset></form>
+ {load.loading?<p role="status">Cargando categorías…</p>:<div className="table-responsive"><table className="table"><thead><tr><th>Categoría</th><th>Estado</th><th>Acción</th></tr></thead><tbody>{load.data?.map(c=><tr key={c.id}><td>{c.nombre}</td><td>{c.activo?"Activa":"Inactiva"}</td><td><button type="button" className="btn btn-sm btn-outline-primary" disabled={busy} onClick={()=>{setEdit(c);setError("");setSuccess("");}} aria-label={"Editar categoría "+c.nombre}>Editar</button></td></tr>)}</tbody></table></div>}
+ </dialog>;
+}

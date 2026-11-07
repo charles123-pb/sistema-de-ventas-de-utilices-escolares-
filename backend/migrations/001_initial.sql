@@ -1,0 +1,17 @@
+
+CREATE TABLE IF NOT EXISTS usuarios(id INTEGER PRIMARY KEY,nombre TEXT NOT NULL,usuario TEXT NOT NULL UNIQUE,password_hash TEXT NOT NULL,rol TEXT NOT NULL CHECK(rol IN ('administrador','vendedor')),activo INTEGER NOT NULL DEFAULT 1,fecha TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS sesiones(hash TEXT PRIMARY KEY,usuario_id INTEGER NOT NULL REFERENCES usuarios(id),expira TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS categorias(id INTEGER PRIMARY KEY,nombre TEXT NOT NULL UNIQUE,activo INTEGER NOT NULL DEFAULT 1);
+INSERT OR IGNORE INTO categorias(nombre) VALUES('Cuadernos'),('Escritura'),('Papelería'),('Arte'),('Oficina'),('Otras');
+CREATE TABLE IF NOT EXISTS productos(id INTEGER PRIMARY KEY,codigo TEXT NOT NULL UNIQUE,nombre TEXT NOT NULL,marca TEXT NOT NULL DEFAULT '',descripcion TEXT NOT NULL DEFAULT '',categoria_id INTEGER NOT NULL REFERENCES categorias(id),imagen TEXT NOT NULL DEFAULT '',costo INTEGER NOT NULL CHECK(costo>=0),precio INTEGER NOT NULL CHECK(precio>0),stock INTEGER NOT NULL DEFAULT 0 CHECK(stock>=0),stock_minimo INTEGER NOT NULL DEFAULT 5 CHECK(stock_minimo>=0),activo INTEGER NOT NULL DEFAULT 1,fecha TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS clientes(id INTEGER PRIMARY KEY,nombre TEXT NOT NULL,telefono TEXT NOT NULL,documento TEXT NOT NULL DEFAULT '',direccion TEXT NOT NULL DEFAULT '');
+CREATE TABLE IF NOT EXISTS cotizaciones(id INTEGER PRIMARY KEY,token_hash TEXT NOT NULL UNIQUE,cliente_id INTEGER REFERENCES clientes(id),nombre TEXT NOT NULL,telefono TEXT NOT NULL,lista TEXT NOT NULL,observaciones TEXT NOT NULL DEFAULT '',presupuesto INTEGER NOT NULL DEFAULT 0,estado TEXT NOT NULL DEFAULT 'solicitada',revision INTEGER NOT NULL DEFAULT 1,vigencia TEXT,fecha TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS propuestas(id INTEGER PRIMARY KEY,cotizacion_id INTEGER NOT NULL REFERENCES cotizaciones(id),revision INTEGER NOT NULL,contenido TEXT NOT NULL,fecha TEXT NOT NULL,UNIQUE(cotizacion_id,revision));
+CREATE TABLE IF NOT EXISTS ventas(id INTEGER PRIMARY KEY,usuario_id INTEGER NOT NULL REFERENCES usuarios(id),cliente_id INTEGER REFERENCES clientes(id),cotizacion_id INTEGER UNIQUE REFERENCES cotizaciones(id),fecha TEXT NOT NULL,total INTEGER NOT NULL CHECK(total>0),costo INTEGER NOT NULL,pago TEXT NOT NULL,recibido INTEGER NOT NULL,clave TEXT NOT NULL UNIQUE,huella TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS detalle_venta(id INTEGER PRIMARY KEY,venta_id INTEGER NOT NULL REFERENCES ventas(id),producto_id INTEGER NOT NULL REFERENCES productos(id),codigo TEXT NOT NULL,nombre TEXT NOT NULL,cantidad INTEGER NOT NULL CHECK(cantidad>0),precio INTEGER NOT NULL,costo INTEGER NOT NULL,subtotal INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS movimientos(id INTEGER PRIMARY KEY,producto_id INTEGER NOT NULL REFERENCES productos(id),usuario_id INTEGER NOT NULL REFERENCES usuarios(id),fecha TEXT NOT NULL,tipo TEXT NOT NULL,cantidad INTEGER NOT NULL,motivo TEXT NOT NULL,costo INTEGER NOT NULL,venta_id INTEGER REFERENCES ventas(id));
+CREATE TABLE IF NOT EXISTS pedidos(id INTEGER PRIMARY KEY,cotizacion_id INTEGER NOT NULL UNIQUE REFERENCES cotizaciones(id),estado TEXT NOT NULL DEFAULT 'pendiente',venta_id INTEGER REFERENCES ventas(id),fecha TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_ventas_fecha ON ventas(fecha);
+CREATE INDEX IF NOT EXISTS idx_movimientos_producto ON movimientos(producto_id,fecha);
+CREATE INDEX IF NOT EXISTS idx_productos_nombre ON productos(nombre);
+CREATE INDEX IF NOT EXISTS idx_cotizaciones_estado ON cotizaciones(estado);

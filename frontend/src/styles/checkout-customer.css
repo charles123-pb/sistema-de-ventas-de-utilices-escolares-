@@ -1,0 +1,21 @@
+.checkout-customer { margin: 18px 0; padding: 15px; border: 1px solid #dce8e3; border-radius: 12px; background: #f8fbfa; }
+.checkout-customer fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.checkout-customer-title h3 { font-size: .92rem; margin: 0; }
+.checkout-customer-title>span { font-size: .72rem; color: #70847d; }
+.checkout-customer-modes { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; margin: 12px 0; }
+.checkout-customer-modes label { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; gap: 5px; cursor: pointer; padding: 10px 5px; border: 1px solid #dce5e1; background: #fff; border-radius: 9px; color: #526a63; text-align: center; font-size: .69rem; line-height: 1.3; }
+.checkout-customer-modes label.selected { background: #e7f4ed; color: #18694f; border-color: #62a78c; box-shadow: inset 0 0 0 1px #62a78c; font-weight: 700; }
+.checkout-customer-modes input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; z-index: 1; }
+.checkout-customer-modes label:focus-within { outline: 3px solid #5db4a0; outline-offset: 2px; }
+.checkout-customer-modes i { font-size: 1.2rem; }
+.checkout-customer-hint { margin: 7px 0 0; font-size: .75rem; color: #6a7f77; }
+.checkout-customer-selected { padding: 11px; border: 1px solid #d2e8dc; border-radius: 9px; background: #edf8f1; overflow-wrap: anywhere; }
+.checkout-customer-selected b,.checkout-customer-selected small { display: block; }
+.checkout-customer-selected b { font-size: .85rem; color: #205b45; }
+.checkout-customer-selected small { margin-top: 5px; font-size: .73rem; color: #637b6f; }
+.checkout-customer-selected .btn { padding: 4px 0 0; font-size: .72rem; }
+.checkout-customer-form { border-top: 1px solid #dce8e3; padding-top: 12px; }
+.checkout-customer-form h4 { font-size: .85rem; margin-bottom: 12px; }
+.checkout-customer .alert { font-size: .76rem; margin: 10px 0; padding: 9px 11px; }
+.checkout-customer .field { font-size: .75rem; }
+.checkout-customer .form-control,.checkout-customer .form-select { font-size: .8rem; }

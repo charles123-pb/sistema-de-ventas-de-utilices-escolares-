@@ -1,0 +1,1 @@
+ALTER TABLE proveedores ADD COLUMN sitio_web TEXT NOT NULL DEFAULT '';
